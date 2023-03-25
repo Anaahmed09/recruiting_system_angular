@@ -9,7 +9,7 @@
               {{ messageError }}
             </div>
           </ng-container>
-          <form [formGroup]="loginForm" (submit)="login()">
+          <form [formGroup]="loginForm" (submit)="login($event)">
             <div class="form-group">
               <label for="username" class="mb-2">Username</label>
               <input

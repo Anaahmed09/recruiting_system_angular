@@ -1,5 +1,5 @@
 import { LoginService } from '../../../services/login.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
@@ -28,17 +28,10 @@ export class LoginComponent {
   public get password() {
     return this.loginForm.controls.password;
   }
-  login() {
+  login(e: Event) {
+    e.preventDefault();
     if (this.loginForm.status === 'VALID')
       this.loginService.login(this.loginForm.value);
-    // .subscribe({
-    //   next: (response) => {
-
-    //   },
-    //   error: (error) => {
-    //     this.messageError = 'Invalid username or password. Please try again.';
-    //   },
-    // });
+    else this.messageError = 'Invalid username or password. Please try again.';
   }
 }
-// 1|QWS9ibsFiaI58wBGzDwjZzUboF4exunRksGeyDyO admin
