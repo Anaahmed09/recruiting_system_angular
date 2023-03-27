@@ -1,6 +1,6 @@
 export interface ILogin {
   token: string;
-  full: string;
+  full_name: string;
   authorization: string;
   img: string;
 }

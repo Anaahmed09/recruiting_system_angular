@@ -1,5 +1,5 @@
+import { AdminService } from './../../../services/admin.service';
 import { Router } from '@angular/router';
-import { CreateJobService } from './../../../services/admin/create-job.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -12,7 +12,7 @@ export class CreateJobComponent {
   messageError: string = '';
   today = new Date().toDateString();
   constructor(
-    private createJobService: CreateJobService,
+    private createJobService: AdminService,
     private router: Router
   ) {}
   jobForm = new FormGroup({

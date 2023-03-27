@@ -1,4 +1,4 @@
-import { DashboardInfoService } from './../../../services/admin/dashboard-info.service';
+import { AdminService } from './../../../services/admin.service';
 import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   public countJobs: string = '...';
   public countQuestions: string = '...';
   constructor(
-    private dashboardInfoService: DashboardInfoService,
+    private dashboardInfoService: AdminService,
     private router: Router
   ) {}
   ngOnInit(): void {

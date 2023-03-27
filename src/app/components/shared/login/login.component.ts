@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
@@ -7,9 +8,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  messageError: string = this.loginService.invalidMessage;
+  messageError: string = '';
   token: string = '';
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
   loginForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
@@ -30,8 +31,19 @@ export class LoginComponent {
   }
   login(e: Event) {
     e.preventDefault();
-    if (this.loginForm.status === 'VALID')
-      this.loginService.login(this.loginForm.value);
-    else this.messageError = 'Invalid username or password. Please try again.';
+    if (this.loginForm.status === 'VALID') {
+      this.loginService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('user', response.authorization);
+          if (response.authorization == 'admin')
+            this.router.navigate(['dashboard']);
+        },
+        error: (error) => {
+          this.messageError = 'Invalid username or password. Please try again.';
+        },
+      });
+    } else
+      this.messageError = 'Invalid username or password. Please try again.';
   }
 }

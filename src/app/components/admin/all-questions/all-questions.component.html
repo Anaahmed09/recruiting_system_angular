@@ -9,7 +9,7 @@
     <h1 class="mb-4 col-md" style="color: var(--green-color)">
       {{ titleJob }}
     </h1>
-    <div class="input-group col-md mb-4">
+    <form class="input-group col-md mb-4">
       <input
         type="search"
         class="form-control rounded"
@@ -22,13 +22,15 @@
       <datalist id="mainList">
         <option
           *ngFor="let question of questionsSearch"
-          value="{{ question?.title.split(' ').slice(0, 5).join(' ') }}"
+          value="{{ question?.title.split(' ').slice(0, 7).join(' ') }}"
         >
           {{ question?.description }}
         </option>
       </datalist>
-      <button type="button" class="btn" (click)="clickToSearch()">search</button>
-    </div>
+      <button type="submit" class="btn" (click)="clickToSearch()">
+        search
+      </button>
+    </form>
   </div>
   <div class="card">
     <div class="card-header text-white">
@@ -65,17 +67,19 @@
           {{ question.title }}
         </div>
         <div class="d-flex flex-column">
-          <div class="mt-4">
-            <span class="fw-bold">Answer 1:</span> {{ question.Answer1 }}
-          </div>
-          <div class="mt-4">
-            <span class="fw-bold">Answer 2:</span> {{ question.Answer2 }}
-          </div>
-          <div class="mt-4">
-            <span class="fw-bold">Answer 3:</span> {{ question.Answer3 }}
-          </div>
-          <div class="mt-4">
-            <span class="fw-bold">Answer 4:</span> {{ question.RightAnswer }}
+          <div
+            class="mt-4"
+            *ngFor="
+              let answer of shuffle([
+                question.Answer1,
+                question.Answer2,
+                question.Answer3,
+                question.RightAnswer
+              ]);
+              let index = index
+            "
+          >
+            <span class="fw-bold">Answer {{ index + 1 }} :</span> {{ answer }}
           </div>
           <div class="mt-4">
             <span class="fw-bold">Right Answer:</span>
@@ -85,7 +89,7 @@
       </li>
     </ul>
   </div>
-  <div class="mb-5 mt-5" *ngIf="displayPagination" >
+  <div class="mb-5 mt-5" *ngIf="displayPagination">
     <pagination-controls
       (pageChange)="onPageChange($event)"
     ></pagination-controls>

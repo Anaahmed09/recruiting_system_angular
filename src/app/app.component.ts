@@ -12,11 +12,11 @@ export class AppComponent {
   constructor(private loginService: LoginService, private router: Router) {}
   logout() {
     let confirmLogout = confirm('Are you sure you want to Logout?');
-    console.log(confirmLogout);
     if (confirmLogout) {
       this.loginService?.logout().subscribe({
         next: (response) => {
           localStorage.removeItem('token');
+          localStorage.removeItem('user');
           this.router?.navigate(['login']);
         },
         error: (error) => {

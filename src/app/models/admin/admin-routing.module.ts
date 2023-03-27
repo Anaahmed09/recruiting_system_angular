@@ -1,3 +1,4 @@
+import { AuthenticationAdminGuard } from './../../authentication-admin.guard';
 import { CreateJobComponent } from './../../components/admin/create-job/create-job.component';
 import { DashboardComponent } from './../../components/admin/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,9 +10,21 @@ import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'addJob', component: CreateJobComponent },
-  { path: 'allQuestions/:id', component: AllQuestionsComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthenticationAdminGuard],
+  },
+  {
+    path: 'addJob',
+    component: CreateJobComponent,
+    canActivate: [AuthenticationAdminGuard],
+  },
+  {
+    path: 'allQuestions/:id',
+    component: AllQuestionsComponent,
+    canActivate: [AuthenticationAdminGuard],
+  },
 ];
 @NgModule({
   imports: [

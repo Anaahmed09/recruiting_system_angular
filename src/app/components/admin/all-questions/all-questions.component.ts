@@ -1,8 +1,8 @@
+import { AdminService } from './../../../services/admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AllQuestionsService } from './../../../services/admin/all-questions.service';
 import { Component, OnInit } from '@angular/core';
 import { IQuestion } from 'src/app/models/paginated-config-question';
-import { from, takeUntil } from 'rxjs';
+import { shuffle } from 'lodash';
 
 @Component({
   selector: 'app-all-questions',
@@ -10,6 +10,9 @@ import { from, takeUntil } from 'rxjs';
   styleUrls: ['./all-questions.component.css'],
 })
 export class AllQuestionsComponent implements OnInit {
+  shuffle(array: any[]): any {
+    return shuffle(array);
+  }
   id: number = 0;
   titleJob: string = '';
   questions: IQuestion[] = [];
@@ -20,12 +23,13 @@ export class AllQuestionsComponent implements OnInit {
   displayPagination: boolean = true;
   messageDelete: boolean | string = false;
   constructor(
-    private allQuestionsService: AllQuestionsService,
+    private allQuestionsService: AdminService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
     this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
   }
+  answers: object = [{ answer: this.questions[0] }];
 
   ngOnInit(): void {
     this.allQuestionsService.getTitleJob(this.id).subscribe({
