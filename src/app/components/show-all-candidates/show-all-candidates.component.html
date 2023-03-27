@@ -1,0 +1,31 @@
+<div class="mt-3">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">JobName</th>
+          <th scope="col">Email</th>
+          <th scope="col">UserName</th>
+          <!-- <th scope="col">Password</th> -->
+          <th scope="col">Image</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let job of jobs">
+        <tr *ngFor="let user of job.user">
+          <th scope="row">{{ job.id }}</th>
+          <td>{{ job.title }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.img }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.address }}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
