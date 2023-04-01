@@ -40,7 +40,7 @@ export class ApplyjobComponent implements OnInit {
         }
       }
     }
-    this.jobService.candidate(this.job_id,this.rightAnswer,1,20-this.rightAnswer);
+    this.jobService.candidate(this.job_id , this.rightAnswer , 1 , 20-this.rightAnswer);
   }
 
   ngOnInit(): void {
