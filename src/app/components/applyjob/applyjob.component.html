@@ -1,0 +1,50 @@
+<div class="mx-5">
+    <form action="" >
+     <div *ngFor="let item of question ; let index = index">
+        <p> <span>{{index+1}}- </span>{{item.title}} </p>
+        <div *ngFor="let answer of shuffle([
+        item.Answer1,
+        item.Answer2,
+        item.Answer3,
+        item.RightAnswer
+      ]); " >
+            <input type="radio" id="{{answer}}{{item.id}}" name="{{item.id}}" value="{{item.id}}:{{answer}}" [(ngModel)]="readioSelected [index]" required="required" >
+            <label for="{{answer}}{{item.id}}">{{answer}}</label><br>
+                      
+     </div>
+     </div>
+     <button class="btn btn-success" (click)="showContent()">Submit</button>
+    </form>
+    
+</div>
+
+
+
+<!-- 
+<div class="container" >
+         
+    <div class="form-group" *ngFor="let item of question ; index as index">
+    <form [formGroup]="form" (ngSubmit)="submit()" >
+            
+                <p> <span>{{index+1}}- </span>{{item.title}} </p>
+               
+                
+                    <input type="radio" id="{{item.Answer2}}{{item.id}}"  name="answer" value={{item.Answer2}} formControlName="answer">
+                    <label for="{{item.Answer2}}{{item.id}}">{{item.Answer2}}</label><br>
+                
+
+                
+                    <input type="radio" id="{{item.Answer1}}{{item.id}}" name="answer"   value={{item.Answer1}} formControlName="answer" >
+                    <label for="{{item.Answer1}}{{item.id}}">{{item.Answer1}}</label><br>
+                
+
+                
+                    <input type="radio" id="{{item.Answer3}}{{item.id}}" name="answer"  value={{item.Answer3}} formControlName="answer" >
+                    <label for="{{item.Answer3}}{{item.id}}">{{item.Answer3}}</label><br>
+               
+
+                    
+                    <button class="btn btn-primary" (click)="onItemClick(item.id)" type="submit" [disabled]="!form.valid">Submit</button>
+                </form>
+            </div>
+</div> -->
