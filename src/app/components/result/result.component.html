@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="sidebar">
+        <a class="active" href="login">Profile</a>
+        <a href="result">Result</a>
+        <a href="logout">Logout</a>
+      </div>
+      
+      <div class="content">
+        
+     
+    <div class="container mt-5">
+        <h3> jobs:</h3>
+        <table class="table mt-5">
+            <thead class="head1" >
+             <tr><th>job name</th>
+             <th>status </th>
+             <th>total</th>
+             <th>wrong answers</th>
+             <th>right answers</th></tr>
+            </thead>
+            <!-- *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }" -->
+            <tbody *ngFor="let candidate of candidatesInfo | paginate: { itemsPerPage: 5, currentPage: p };index as i">
+                <tr>
+                <td>{{ this.jobInfo[i][0].title}}</td>
+                <td>{{ candidate.status }}</td>
+                <td>20</td>
+                <td>{{ candidate.numbers_of_wrong_answers }}</td>
+                <td>{{ candidate.numbers_of_right_answers }}</td>
+                </tr>
+            </tbody>
+
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+</body>
+</html>
