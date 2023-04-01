@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileService {
-  token_user:string="Bearer 8|pUeI6G4XO1ngd2ZKg4Yyyymjn8fUUaUCYw5iqubh"
+  token_user:string="Bearer 1|10Z4JRMUnRAT84dByXNlQvmvV2Mgvu3qQyLavcI2"
   headers: HttpHeaders = new HttpHeaders({
     'X-API-KEY': 'eBKmXPlchepF3QAhBJ4pldSEwp78RhJzSDed5q35S30',
     'Authorization':this.token_user
