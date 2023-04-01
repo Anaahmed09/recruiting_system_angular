@@ -26,7 +26,7 @@ export class CreateQuestionComponent implements OnInit {
   ngOnInit(): void {
     if (this.question_id !== 0)
       this.CreateQuestionService.getQuestionById(this.jobId).subscribe({
-        next: (Response) => {
+        next: (Response: any) => {
           this.Question = Response;
           this.createQuestionForm.controls['Question'].setValue(
             this.Question.title
@@ -108,10 +108,10 @@ export class CreateQuestionComponent implements OnInit {
     if (this.createQuestionForm.status == 'VALID') {
       if (this.question_id == 0) {
         this.CreateQuestionService.CreateQuestion(this.request).subscribe({
-          next: (response) => {
+          next: (response: any) => {
             console.log(response);
           },
-          error: (error) => {
+          error: (error: any) => {
             // this.router.navigate(['login']);
             console.log(error);
           },
@@ -121,11 +121,11 @@ export class CreateQuestionComponent implements OnInit {
           this.question_id,
           this.request
         ).subscribe({
-          next: (response) => {
+          next: (response: any) => {
             console.log(response);
             // this.router.navigate(['allQuestion']);
           },
-          error: (error) => {
+          error: (error: any) => {
             console.log(error);
             // this.router.navigate(['login']);
           },

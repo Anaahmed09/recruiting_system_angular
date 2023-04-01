@@ -1,5 +1,5 @@
 import { CreateQuestionComponent } from './components/create-question/create-question.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { ShowAllCandidatesComponent } from './components/show-all-candidates/show-all-candidates.component';

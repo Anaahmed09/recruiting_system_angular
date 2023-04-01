@@ -7,12 +7,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowAllCandidatesComponent } from './components/show-all-candidates/show-all-candidates.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchPipe } from './search.pipe';
+// import {MatFormFieldModule} from '@angular/material/form-field';
+// import {MatTableModule} from '@angular/material/table';
+// import {MatPaginatorModule} from '@angular/material/paginator';
+import {NgxPaginationModule} from 'ngx-pagination'
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateQuestionComponent,
     ShowAllCandidatesComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -20,6 +27,11 @@ import { ShowAllCandidatesComponent } from './components/show-all-candidates/sho
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    // MatFormFieldModule,
+    // MatTableModule,
+    // MatPaginatorModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
