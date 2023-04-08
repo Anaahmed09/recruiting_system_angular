@@ -9,6 +9,8 @@ import { LoginComponent } from './components/shared/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { CreateQuestionComponent } from './components/create-question/create-question.component';
+import { ShowAllCandidatesComponent } from './components/show-all-candidates/show-all-candidates.component';
 // import { WelcomeComponent } from './components/user/welcome/welcome.component';
 import { AllJobsComponent } from './components/admin/all-jobs/all-jobs.component';
 import { RegisterFormComponent } from './components/user/register-form/register-form.component';
@@ -19,6 +21,8 @@ import { JobComponent } from './components/job/job.component';
 import { ApplyjobComponent } from './components/applyjob/applyjob.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './order-by-pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,9 @@ import { OrderByPipe } from './order-by-pipe';
     JobComponent,
     ApplyjobComponent,
     OrderByPipe,
+    CreateQuestionComponent,
+    ShowAllCandidatesComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,7 @@ import { OrderByPipe } from './order-by-pipe';
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
-
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

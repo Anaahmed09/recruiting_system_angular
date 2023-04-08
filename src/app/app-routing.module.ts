@@ -9,6 +9,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterFormComponent } from './components/user/register-form/register-form.component';
 import { AllJobsComponent } from './components/admin/all-jobs/all-jobs.component';
 import { WelcomeComponent } from './components/user/welcome/welcome.component';
+import { ShowAllCandidatesComponent } from './components/show-all-candidates/show-all-candidates.component';
+import { CreateQuestionComponent } from './components/create-question/create-question.component';
+
 
 const routes: Routes = [
   {path:'welcome', component :ApplyjobComponent },
@@ -18,6 +21,8 @@ const routes: Routes = [
   { path:'result', component: ResultComponent, }
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent },
+  { path: 'createQuestion/:question_id/:job_id', component: CreateQuestionComponent },
+  { path: 'showAllCandidates', component: ShowAllCandidatesComponent },
   {
     path: 'signup',
     component: RegisterFormComponent,
