@@ -14,7 +14,7 @@ import { JobService } from 'src/app/services/job.service';
 export class JobComponent implements OnInit{
   job:any=[];
   jobs:any=[];
-  p: number = 1;
+  current: number = 1;
   constructor(private jobservice:JobService){
  
   }
@@ -27,7 +27,6 @@ export class JobComponent implements OnInit{
        console.log(response) 
        this.jobs=response;
        this.job=this.jobs[0];
-      //  console.log(response) 
       },
       error:(error)=>{
         console.log(error);

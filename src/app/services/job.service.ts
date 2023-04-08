@@ -16,7 +16,7 @@ export class JobService {
 
   applyUrl: string = '';
   baseurl: string = 'http://localhost:8000/api/job.available';
-  candidateUrl: string = 'http://localhost:8000/api//candidate.store';
+  candidateUrl: string = 'http://localhost:8000/api/candidate.store';
 
   job() {
     this.applyUrl = 'http://localhost:8000/api/question/' + this.job_id;
@@ -24,13 +24,16 @@ export class JobService {
     return this.http.get(this.applyUrl, { headers: this.headers });
   }
 
-  candidate(job_id:any ,numbers_of_right_answers:number,user_id:number,numbers_of_wrong_answers:number){
-    let user={
+  candidate(
+    job_id: any,
+    numbers_of_right_answers: number,
+    numbers_of_wrong_answers: number
+  ) {
+    let user = {
       job_id,
       numbers_of_right_answers,
-      user_id,
-      numbers_of_wrong_answers 
-    }
+      numbers_of_wrong_answers,
+    };
     return this.http.post(this.candidateUrl, user, { headers: this.headers });
   }
 

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path:'welcome', component :ApplyjobComponent },
-  {path:'userjop', component : JobComponent},
+  {path:'userjob', component : JobComponent},
   {path:'apply/:id', component :ApplyjobComponent },
 ];
 
