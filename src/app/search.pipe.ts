@@ -19,5 +19,6 @@ export class SearchPipe implements PipeTransform {
    });
 
   }
+  // console.log(object);
 
 }
