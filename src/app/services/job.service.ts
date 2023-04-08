@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class JobService {
+  job_id: number = 0;
   constructor(private http: HttpClient) {}
 
   baseURL: string = 'http://127.0.0.1:8000/api/job';
@@ -37,5 +38,30 @@ export class JobService {
 
   deleteJob(id: number) {
     return this.http.delete(`${this.baseURL}/${id}`, this.requestOptions);
+  }
+
+
+
+  job() {
+    this.applyUrl = 'http://localhost:8000/api/question/' + this.job_id;
+
+    return this.http.get(this.applyUrl, { headers: this.headers });
+  }
+
+  candidate(
+    job_id: any,
+    numbers_of_right_answers: number,
+    numbers_of_wrong_answers: number
+  ) {
+    let user = {
+      job_id,
+      numbers_of_right_answers,
+      numbers_of_wrong_answers,
+    };
+    return this.http.post(this.candidateUrl, user, { headers: this.headers });
+  }
+
+  getlogin() {
+    return this.http.get(this.baseurl, { headers: this.headers });
   }
 }
