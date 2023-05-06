@@ -7,13 +7,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ShowAllCandidatesService {
   httpClient: any;
+  token: String = localStorage.getItem('token');
   constructor(private http: HttpClient) {}
   headers = new HttpHeaders({
     'X-API-KEY': 'eBKmXPlchepF3QAhBJ4pldSEwp78RhJzSDed5q35S30',
-    'Authorization': 'Bearer 2|g6DrOZ2rWu73x88H35oafJn6Pz0KUnYQ0j9b5CEU',
+    Authorization: `Bearer ${this.token}`,
   });
-  baseUrl: string =
-    'http://localhost/Project_Back_End/recruiting_system-/public/api/candidate';
+  baseUrl: string = 'http://localhost/api/candidate';
   // baseUrl: string =
   //   'http://localhost/api/candidate';
   ShowAllCandidates() {
@@ -21,5 +21,4 @@ export class ShowAllCandidatesService {
     //console.log(result);
     return result; //return observable data
   }
-
 }

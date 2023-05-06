@@ -6,10 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class CreateQuestionService {
   constructor(private http: HttpClient) {}
+  token: String = localStorage.getItem('token');
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'X-API-KEY': 'eBKmXPlchepF3QAhBJ4pldSEwp78RhJzSDed5q35S30',
-    Authorization: 'Bearer 2|C42KnFV8YZce0V6xlSWG8IE3lyf0WgnPenV9LZzR',
+    Authorization: `Bearer ${this.token}`,
   });
 
   // baseUrl: string =
@@ -25,6 +26,6 @@ export class CreateQuestionService {
     });
   }
   getQuestionById(id: number) {
-    return this.http.get(`${this.baseUrl}/${id}`, { headers: this.headers });
+    return this.http.get(`${this.baseUrl}/${id}/edit`, { headers: this.headers });
   }
 }

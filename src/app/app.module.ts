@@ -1,16 +1,13 @@
 import { AdminRoutingModule } from './models/admin/admin-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './components/user/welcome/welcome.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/shared/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { CreateQuestionComponent } from './components/create-question/create-question.component';
 import { ShowAllCandidatesComponent } from './components/show-all-candidates/show-all-candidates.component';
@@ -30,7 +27,7 @@ import { SearchPipe } from './search.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent,
+    // WelcomeComponent,
     NavbarComponent,
     FooterComponent,
     LoginComponent,
@@ -57,7 +54,6 @@ import { SearchPipe } from './search.pipe';
     NgxPaginationModule,
     BrowserAnimationsModule,
   ],
-  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -12,20 +12,42 @@ import { RegisterFormComponent } from './components/user/register-form/register-
 import { AllJobsComponent } from './components/admin/all-jobs/all-jobs.component';
 import { ShowAllCandidatesComponent } from './components/show-all-candidates/show-all-candidates.component';
 import { CreateQuestionComponent } from './components/create-question/create-question.component';
+import { AuthenticationUserGuard } from './authentication-user.guard';
+import { AuthenticationAdminGuard } from './authentication-admin.guard';
 
 const routes: Routes = [
-  { path: 'welcome', component: ApplyjobComponent },
-  { path: 'userjob', component: JobComponent },
-  { path: 'apply/:id', component: ApplyjobComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'result', component: ResultComponent },
+  // { path: 'welcome', component: ApplyjobComponent },
+  {
+    path: 'userjob',
+    component: JobComponent,
+    canActivate: [AuthenticationUserGuard],
+  },
+  {
+    path: 'apply/:id',
+    component: ApplyjobComponent,
+    canActivate: [AuthenticationUserGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthenticationUserGuard],
+  },
+  {
+    path: 'result',
+    component: ResultComponent,
+    canActivate: [AuthenticationAdminGuard],
+  },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: NotFoundComponent },
   {
     path: 'createQuestion/:question_id/:job_id',
     component: CreateQuestionComponent,
+    canActivate: [AuthenticationAdminGuard],
   },
-  { path: 'showAllCandidates', component: ShowAllCandidatesComponent },
+  {
+    path: 'showAllCandidates',
+    component: ShowAllCandidatesComponent,
+    canActivate: [AuthenticationAdminGuard],
+  },
   {
     path: 'signup',
     component: RegisterFormComponent,
@@ -39,6 +61,7 @@ const routes: Routes = [
     redirectTo: 'signup',
     pathMatch: 'full',
   },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

@@ -52,7 +52,10 @@
         <div class="d-flex justify-content-between">
           <div class="fw-bold">#ID: {{ question.id }}</div>
           <div>
-            <a class="btn me-2" [routerLink]="['addJob']">
+            <a
+              class="btn me-2"
+              [routerLink]="['/createQuestion', question.id, id]"
+            >
               <i
                 class="bi bi-pencil-square fs-2"
                 style="color: var(--green-color)"
@@ -69,15 +72,7 @@
         <div class="d-flex flex-column">
           <div
             class="mt-4"
-            *ngFor="
-              let answer of shuffle([
-                question.Answer1,
-                question.Answer2,
-                question.Answer3,
-                question.RightAnswer
-              ]);
-              let index = index
-            "
+            *ngFor="let answer of question.answers; let index = index"
           >
             <span class="fw-bold">Answer {{ index + 1 }} :</span> {{ answer }}
           </div>

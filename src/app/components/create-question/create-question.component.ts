@@ -25,9 +25,11 @@ export class CreateQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.question_id !== 0)
-      this.CreateQuestionService.getQuestionById(this.jobId).subscribe({
+      this.CreateQuestionService.getQuestionById(this.question_id).subscribe({
         next: (Response: any) => {
-          this.Question = Response;
+          this.Question = Response.data;
+          console.log(Response)
+          console.log(this.Question)
           this.createQuestionForm.controls['Question'].setValue(
             this.Question.title
           );
@@ -41,9 +43,6 @@ export class CreateQuestionComponent implements OnInit {
             this.Question.Answer3
           );
           this.createQuestionForm.controls['Answer4'].setValue(
-            this.Question.RightAnswer
-          );
-          this.createQuestionForm.controls['Question'].setValue(
             this.Question.RightAnswer
           );
           this.createQuestionForm.controls['Details'].setValue(

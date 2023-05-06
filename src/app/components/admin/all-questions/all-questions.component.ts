@@ -2,7 +2,7 @@ import { AdminService } from './../../../services/admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { IQuestion } from 'src/app/models/paginated-config-question';
-import { shuffle } from 'lodash';
+import { forEach, shuffle } from 'lodash';
 
 @Component({
   selector: 'app-all-questions',
@@ -10,12 +10,9 @@ import { shuffle } from 'lodash';
   styleUrls: ['./all-questions.component.css'],
 })
 export class AllQuestionsComponent implements OnInit {
-  shuffle(array: any[]): any {
-    return shuffle(array);
-  }
   id: number = 0;
   titleJob: string = '';
-  questions: IQuestion[] = [];
+  questions: IQuestion[] | any[] = [];
   pre_page: number = 0;
   current_page: number = 0;
   total: number = 0;
@@ -51,14 +48,25 @@ export class AllQuestionsComponent implements OnInit {
     this.allQuestionsService.showQuestions(this.id, page).subscribe({
       next: (response) => {
         this.questions = response.data;
+        this.shuffle();
         this.current_page = response.current_page;
         this.pre_page = response.per_page;
         this.total = response.total;
-        console.log(this.total);
       },
       error: (error) => {
         this.router.navigate(['login']);
       },
+    });
+  }
+
+  shuffle(): void {
+    forEach(this.questions, (item) => {
+      item.answers = shuffle([
+        item.Answer1,
+        item.Answer2,
+        item.Answer3,
+        item.RightAnswer,
+      ]);
     });
   }
 
@@ -70,9 +78,10 @@ export class AllQuestionsComponent implements OnInit {
       this.allQuestionsService.deleteQuestion(id).subscribe({
         next: (response) => {
           this.messageDelete = 'Deleted Successfully ...';
-          setTimeout(() => {
-            location.reload();
-          }, 3000);
+          this.questions.splice(
+            this.questions.findIndex((ele) => ele.id === id),
+            1
+          );
         },
         error: (error) => {
           this.router.navigate(['login']);
@@ -96,5 +105,6 @@ export class AllQuestionsComponent implements OnInit {
   clickToSearch() {
     this.displayPagination = false;
     this.questions = this.questionsSearch;
+    this.shuffle();
   }
 }

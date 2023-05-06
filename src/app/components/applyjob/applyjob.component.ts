@@ -33,7 +33,7 @@ export class ApplyjobComponent implements OnInit {
         this.shuffleAnswers();
       },
       error: (error) => {
-        console.log(error);
+        this.routre.navigate(['login']);
       },
     });
   }

@@ -6,11 +6,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class JobService {
   job_id: number = 0;
+  applyUrl: string;
+  candidateUrl: string;
+  baseurl: string;
   constructor(private http: HttpClient) {}
 
-  baseURL: string = 'http://127.0.0.1:8000/api/job';
+  baseURL: string = 'http://localhost/api';
   // TODO: get token from localStorage
-  auth_token = '8|x6TTRGUpd9vjnO8pkrrgvoK9vARbzW0UMGS1VVYT';
+  auth_token = localStorage.getItem('token');
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -21,29 +24,30 @@ export class JobService {
   requestOptions = { headers: this.headers };
 
   getAllJobs(page: number) {
-    return this.http.get(`${this.baseURL}?page=${page}`, this.requestOptions);
+    return this.http.get(
+      `${this.baseURL}/job?page=${page}`,
+      this.requestOptions
+    );
   }
 
   getJob(id: number) {
-    return this.http.get(`${this.baseURL}/${id}`, this.requestOptions);
+    return this.http.get(`${this.baseURL}/job/${id}`, this.requestOptions);
   }
 
   createJob(job: any) {
-    return this.http.post(this.baseURL, job, this.requestOptions);
+    return this.http.post(`${this.baseURL}/job`, job, this.requestOptions);
   }
 
   editJob(id: number, job: any) {
-    return this.http.put(`${this.baseURL}/${id}`, job, this.requestOptions);
+    return this.http.put(`${this.baseURL}/job/${id}`, job, this.requestOptions);
   }
 
   deleteJob(id: number) {
-    return this.http.delete(`${this.baseURL}/${id}`, this.requestOptions);
+    return this.http.delete(`${this.baseURL}/job/${id}`, this.requestOptions);
   }
 
-
-
   job() {
-    this.applyUrl = 'http://localhost:8000/api/question/' + this.job_id;
+    this.applyUrl = `${this.baseURL}/question/` + this.job_id;
 
     return this.http.get(this.applyUrl, { headers: this.headers });
   }
@@ -62,6 +66,6 @@ export class JobService {
   }
 
   getlogin() {
-    return this.http.get(this.baseurl, { headers: this.headers });
+    return this.http.get(`${this.baseURL}/job.available`, { headers: this.headers });
   }
 }
